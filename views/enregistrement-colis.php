@@ -125,10 +125,19 @@
 <div id="select-cargaison-modal" class="fixed inset-0 bg-gray-900/80 backdrop-blur-sm flex items-center justify-center z-50 opacity-0 pointer-events-none transition-opacity duration-300">
     <div class="bg-gray-800/95 rounded-2xl p-6 max-w-2xl w-full mx-4 border border-cyan-500/30">
         <div class="flex justify-between items-center mb-6">
-            <h3 class="text-xl font-bold text-white">Sélectionner une Cargaison</h3>
+            <div>
+                <h3 class="text-xl font-bold text-white">Sélectionner une Cargaison</h3>
+                <p class="text-sm text-gray-400 mt-1">Type de colis: <span id="colis-type-display" class="text-cyan-400 font-semibold">-</span></p>
+            </div>
             <button id="close-modal" class="text-gray-400 hover:text-cyan-400">
                 <i class="fas fa-times"></i>
             </button>
+        </div>
+        
+        <!-- Indicateur de chargement -->
+        <div id="cargaisons-loading" class="hidden text-center py-8">
+            <i class="fas fa-spinner fa-spin text-cyan-400 text-2xl mb-2"></i>
+            <p class="text-gray-400">Chargement des cargaisons disponibles...</p>
         </div>
         
         <div id="cargaisons-list" class="space-y-4 max-h-96 overflow-y-auto">
@@ -139,12 +148,15 @@
             <button id="cancel-selection" class="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-500">
                 Annuler
             </button>
-            <button id="confirm-selection" class="px-4 py-2 bg-cyan-500 text-white rounded-lg hover:bg-cyan-600" disabled>
-                Confirmer
+            <button id="confirm-selection" class="px-4 py-2 bg-cyan-500 text-white rounded-lg hover:bg-cyan-600 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                <i class="fas fa-check mr-2"></i>Confirmer la sélection
             </button>
         </div>
     </div>
 </div>
+
+<!-- Toast container -->
+<div id="toast-root" class="fixed top-4 right-4 z-50 space-y-3"></div>
 
 <style>
 .phone-dropdown::-webkit-scrollbar {
